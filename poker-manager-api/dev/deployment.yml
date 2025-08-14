@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pokermanagerapi-dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokermanagerapi
+  namespace: pokermanagerapi-dev
+  labels:
+    app: pokermanagerapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pokermanagerapi
+  template:
+    metadata:
+      labels:
+        app: pokermanagerapi
+    spec:
+      containers:
+      - name: pokermanagerapi
+        image: joelmarquesmartins/pokermanagerapi:v0.0.2
+        ports:
+          - name: http
+            containerPort: 8080      # <-- change if your container listens elsewhere
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://+:8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokermanagerapi
+  namespace: pokermanagerapi-dev
+spec:
+  selector:
+    app: pokermanagerapi
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+---
