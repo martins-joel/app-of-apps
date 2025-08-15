@@ -30,7 +30,7 @@ spec:
         env:
           - name: ASPNETCORE_URLS
             value: http://+:8080
-          - name: PMDatabaseConnection
+          - name: ConnectionStrings__PMDatabaseConnection
             value: Host=pokermanager-postgres;Port=5432;Database=PokerManagerDb;Username=username;Password=password
 ---
 apiVersion: v1
