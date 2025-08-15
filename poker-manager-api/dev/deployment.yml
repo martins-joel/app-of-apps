@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: pokermanagerapi
-        image: joelmarquesmartins/pokermanagerapi:v0.0.2
+        image: joelmarquesmartins/pokermanagerapi:v0.0.3
         ports:
           - name: http
             containerPort: 8080      # <-- change if your container listens elsewhere
@@ -46,4 +46,5 @@ spec:
       port: 80
       targetPort: 8080
   type: ClusterIP
+
 ---
